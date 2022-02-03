@@ -8,7 +8,12 @@ defmodule InventoryWeb.Router do
   scope "/", InventoryWeb do
     pipe_through :api
 
-    get "/", CompanyController, :index
+    get "/companies", CompanyController, :index
+    get "/companies/:id", CompanyController, :show
+    post "/companies", CompanyController, :create
+    patch "/companies/:id", CompanyController, :update
+    put "/companies/:id", CompanyController, :update
+    delete "/companies/:id", CompanyController, :delete
   end
 
   scope "/api", InventoryWeb do

@@ -35,7 +35,7 @@ defmodule Inventory.Warehousing do
       ** (Ecto.NoResultsError)
 
   """
-  def get_company!(id), do: Repo.get!(Company, id)
+  def get_company!(id), do: Repo.get_by!(Company, id: id)
 
   @doc """
   Creates a company.
