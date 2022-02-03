@@ -58,4 +58,60 @@ defmodule Inventory.WarehousingTest do
       assert %Ecto.Changeset{} = Warehousing.change_company(company)
     end
   end
+
+  describe "warehouses" do
+    alias Inventory.Warehousing.Warhouse
+
+    import Inventory.WarehousingFixtures
+
+    @invalid_attrs %{address: nil, name: nil}
+
+    test "list_warehouses/0 returns all warehouses" do
+      warhouse = warhouse_fixture()
+      assert Warehousing.list_warehouses() == [warhouse]
+    end
+
+    test "get_warhouse!/1 returns the warhouse with given id" do
+      warhouse = warhouse_fixture()
+      assert Warehousing.get_warhouse!(warhouse.id) == warhouse
+    end
+
+    test "create_warhouse/1 with valid data creates a warhouse" do
+      valid_attrs = %{address: "some address", name: "some name"}
+
+      assert {:ok, %Warhouse{} = warhouse} = Warehousing.create_warhouse(valid_attrs)
+      assert warhouse.address == "some address"
+      assert warhouse.name == "some name"
+    end
+
+    test "create_warhouse/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Warehousing.create_warhouse(@invalid_attrs)
+    end
+
+    test "update_warhouse/2 with valid data updates the warhouse" do
+      warhouse = warhouse_fixture()
+      update_attrs = %{address: "some updated address", name: "some updated name"}
+
+      assert {:ok, %Warhouse{} = warhouse} = Warehousing.update_warhouse(warhouse, update_attrs)
+      assert warhouse.address == "some updated address"
+      assert warhouse.name == "some updated name"
+    end
+
+    test "update_warhouse/2 with invalid data returns error changeset" do
+      warhouse = warhouse_fixture()
+      assert {:error, %Ecto.Changeset{}} = Warehousing.update_warhouse(warhouse, @invalid_attrs)
+      assert warhouse == Warehousing.get_warhouse!(warhouse.id)
+    end
+
+    test "delete_warhouse/1 deletes the warhouse" do
+      warhouse = warhouse_fixture()
+      assert {:ok, %Warhouse{}} = Warehousing.delete_warhouse(warhouse)
+      assert_raise Ecto.NoResultsError, fn -> Warehousing.get_warhouse!(warhouse.id) end
+    end
+
+    test "change_warhouse/1 returns a warhouse changeset" do
+      warhouse = warhouse_fixture()
+      assert %Ecto.Changeset{} = Warehousing.change_warhouse(warhouse)
+    end
+  end
 end

@@ -18,4 +18,19 @@ defmodule Inventory.WarehousingFixtures do
 
     company
   end
+
+  @doc """
+  Generate a warhouse.
+  """
+  def warhouse_fixture(attrs \\ %{}) do
+    {:ok, warhouse} =
+      attrs
+      |> Enum.into(%{
+        address: "some address",
+        name: "some name"
+      })
+      |> Inventory.Warehousing.create_warhouse()
+
+    warhouse
+  end
 end
