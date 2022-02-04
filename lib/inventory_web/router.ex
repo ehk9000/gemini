@@ -9,6 +9,7 @@ defmodule InventoryWeb.Router do
     pipe_through :api
     resources "/warehouses", WarehouseController, except: [:new, :edit]
     resources "/companies", CompanyController, expect: [:new, :edit]
+    resources "/item", ItemController, except: [:new, :edit]
     # get "/companies", CompanyController, :index
     # get "/companies/:id", CompanyController, :show
     # post "/companies", CompanyController, :create

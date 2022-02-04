@@ -114,4 +114,66 @@ defmodule Inventory.WarehousingTest do
       assert %Ecto.Changeset{} = Warehousing.change_warhouse(warhouse)
     end
   end
+
+  describe "item" do
+    alias Inventory.Warehousing.Item
+
+    import Inventory.WarehousingFixtures
+
+    @invalid_attrs %{description: nil, name: nil, sku: nil, unit: nil, weight: nil}
+
+    test "list_item/0 returns all item" do
+      item = item_fixture()
+      assert Warehousing.list_item() == [item]
+    end
+
+    test "get_item!/1 returns the item with given id" do
+      item = item_fixture()
+      assert Warehousing.get_item!(item.id) == item
+    end
+
+    test "create_item/1 with valid data creates a item" do
+      valid_attrs = %{description: "some description", name: "some name", sku: "some sku", unit: "some unit", weight: 42}
+
+      assert {:ok, %Item{} = item} = Warehousing.create_item(valid_attrs)
+      assert item.description == "some description"
+      assert item.name == "some name"
+      assert item.sku == "some sku"
+      assert item.unit == "some unit"
+      assert item.weight == 42
+    end
+
+    test "create_item/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Warehousing.create_item(@invalid_attrs)
+    end
+
+    test "update_item/2 with valid data updates the item" do
+      item = item_fixture()
+      update_attrs = %{description: "some updated description", name: "some updated name", sku: "some updated sku", unit: "some updated unit", weight: 43}
+
+      assert {:ok, %Item{} = item} = Warehousing.update_item(item, update_attrs)
+      assert item.description == "some updated description"
+      assert item.name == "some updated name"
+      assert item.sku == "some updated sku"
+      assert item.unit == "some updated unit"
+      assert item.weight == 43
+    end
+
+    test "update_item/2 with invalid data returns error changeset" do
+      item = item_fixture()
+      assert {:error, %Ecto.Changeset{}} = Warehousing.update_item(item, @invalid_attrs)
+      assert item == Warehousing.get_item!(item.id)
+    end
+
+    test "delete_item/1 deletes the item" do
+      item = item_fixture()
+      assert {:ok, %Item{}} = Warehousing.delete_item(item)
+      assert_raise Ecto.NoResultsError, fn -> Warehousing.get_item!(item.id) end
+    end
+
+    test "change_item/1 returns a item changeset" do
+      item = item_fixture()
+      assert %Ecto.Changeset{} = Warehousing.change_item(item)
+    end
+  end
 end
