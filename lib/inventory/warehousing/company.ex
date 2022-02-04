@@ -5,9 +5,9 @@ defmodule Inventory.Warehousing.Company do
   @primary_key false
   @foreign_key_type :binary_id
   schema "companies" do
-    field :id, Ecto.UUID, autogenerate: true, primary_key: true
-    field :name, :string
     field :tenant_id, Ecto.UUID, primary_key: true
+    field :company_id, Ecto.UUID, autogenerate: true, primary_key: true
+    field :name, :string
 
     timestamps()
   end

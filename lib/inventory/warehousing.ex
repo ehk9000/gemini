@@ -102,7 +102,7 @@ defmodule Inventory.Warehousing do
     Company.changeset(company, attrs)
   end
 
-  alias Inventory.Warehousing.Warhouse
+  alias Inventory.Warehousing.Warehouse
 
   @doc """
   Returns the list of warehouses.
@@ -110,91 +110,91 @@ defmodule Inventory.Warehousing do
   ## Examples
 
       iex> list_warehouses()
-      [%Warhouse{}, ...]
+      [%Warehouse{}, ...]
 
   """
   def list_warehouses do
-    Repo.all(Warhouse)
+    Repo.all(Warehouse)
   end
 
   @doc """
-  Gets a single warhouse.
+  Gets a single warehouse.
 
-  Raises `Ecto.NoResultsError` if the Warhouse does not exist.
+  Raises `Ecto.NoResultsError` if the Warehouse does not exist.
 
   ## Examples
 
-      iex> get_warhouse!(123)
-      %Warhouse{}
+      iex> get_warehouse!(123)
+      %Warehouse{}
 
-      iex> get_warhouse!(456)
+      iex> get_warehouse!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_warhouse!(id), do: Repo.get!(Warhouse, id)
+  def get_warehouse!(id), do: Repo.get!(Warehouse, id)
 
   @doc """
-  Creates a warhouse.
+  Creates a warehouse.
 
   ## Examples
 
-      iex> create_warhouse(%{field: value})
-      {:ok, %Warhouse{}}
+      iex> create_warehouse(%{field: value})
+      {:ok, %Warehouse{}}
 
-      iex> create_warhouse(%{field: bad_value})
+      iex> create_warehouse(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_warhouse(attrs \\ %{}) do
-    %Warhouse{}
-    |> Warhouse.changeset(attrs)
+  def create_warehouse(attrs \\ %{}) do
+    %Warehouse{}
+    |> Warehouse.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a warhouse.
+  Updates a warehouse.
 
   ## Examples
 
-      iex> update_warhouse(warhouse, %{field: new_value})
-      {:ok, %Warhouse{}}
+      iex> update_warehouse(warehouse, %{field: new_value})
+      {:ok, %Warehouse{}}
 
-      iex> update_warhouse(warhouse, %{field: bad_value})
+      iex> update_warehouse(warehouse, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_warhouse(%Warhouse{} = warhouse, attrs) do
-    warhouse
-    |> Warhouse.changeset(attrs)
+  def update_warehouse(%Warehouse{} = warehouse, attrs) do
+    warehouse
+    |> Warehouse.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a warhouse.
+  Deletes a warehouse.
 
   ## Examples
 
-      iex> delete_warhouse(warhouse)
-      {:ok, %Warhouse{}}
+      iex> delete_warehouse(warehouse)
+      {:ok, %Warehouse{}}
 
-      iex> delete_warhouse(warhouse)
+      iex> delete_warehouse(warehouse)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_warhouse(%Warhouse{} = warhouse) do
-    Repo.delete(warhouse)
+  def delete_warehouse(%Warehouse{} = warehouse) do
+    Repo.delete(warehouse)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking warhouse changes.
+  Returns an `%Ecto.Changeset{}` for tracking warehouse changes.
 
   ## Examples
 
-      iex> change_warhouse(warhouse)
-      %Ecto.Changeset{data: %Warhouse{}}
+      iex> change_warehouse(warehouse)
+      %Ecto.Changeset{data: %Warehouse{}}
 
   """
-  def change_warhouse(%Warhouse{} = warhouse, attrs \\ %{}) do
-    Warhouse.changeset(warhouse, attrs)
+  def change_warehouse(%Warehouse{} = warehouse, attrs \\ %{}) do
+    Warehouse.changeset(warehouse, attrs)
   end
 end
