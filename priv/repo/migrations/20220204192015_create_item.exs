@@ -10,18 +10,22 @@ defmodule Inventory.Repo.Migrations.CreateItem do
       add :description, :string
       add :weight, :integer
       add :unit, :string
-      add :company_id,
-      references(:companies,
-        column: :company_id,
-        type: :uuid,
-        with: [tenant_id: :tenant_id]
-        ), null: false
 
-      add :warehouse_id, references(:warehouses,
-          column: :warehouse_id,
-          type: :uuid,
-          with: [tenant_id: :tenant_id]
-        ), null: false
+      add :company_id,
+          references(:companies,
+            column: :company_id,
+            type: :uuid,
+            with: [tenant_id: :tenant_id]
+          ),
+          null: false
+
+      add :warehouse_id,
+          references(:warehouses,
+            column: :warehouse_id,
+            type: :uuid,
+            with: [tenant_id: :tenant_id]
+          ),
+          null: false
 
       timestamps()
     end

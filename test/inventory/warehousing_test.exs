@@ -34,7 +34,11 @@ defmodule Inventory.WarehousingTest do
 
     test "update_company/2 with valid data updates the company" do
       company = company_fixture()
-      update_attrs = %{name: "some updated name", tenant_id: "7488a646-e31f-11e4-aace-600308960668"}
+
+      update_attrs = %{
+        name: "some updated name",
+        tenant_id: "7488a646-e31f-11e4-aace-600308960668"
+      }
 
       assert {:ok, %Company{} = company} = Warehousing.update_company(company, update_attrs)
       assert company.name == "some updated name"
@@ -133,7 +137,13 @@ defmodule Inventory.WarehousingTest do
     end
 
     test "create_item/1 with valid data creates a item" do
-      valid_attrs = %{description: "some description", name: "some name", sku: "some sku", unit: "some unit", weight: 42}
+      valid_attrs = %{
+        description: "some description",
+        name: "some name",
+        sku: "some sku",
+        unit: "some unit",
+        weight: 42
+      }
 
       assert {:ok, %Item{} = item} = Warehousing.create_item(valid_attrs)
       assert item.description == "some description"
@@ -149,7 +159,14 @@ defmodule Inventory.WarehousingTest do
 
     test "update_item/2 with valid data updates the item" do
       item = item_fixture()
-      update_attrs = %{description: "some updated description", name: "some updated name", sku: "some updated sku", unit: "some updated unit", weight: 43}
+
+      update_attrs = %{
+        description: "some updated description",
+        name: "some updated name",
+        sku: "some updated sku",
+        unit: "some updated unit",
+        weight: 43
+      }
 
       assert {:ok, %Item{} = item} = Warehousing.update_item(item, update_attrs)
       assert item.description == "some updated description"

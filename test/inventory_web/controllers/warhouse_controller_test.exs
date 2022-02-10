@@ -49,7 +49,10 @@ defmodule InventoryWeb.WarhouseControllerTest do
   describe "update warhouse" do
     setup [:create_warhouse]
 
-    test "renders warhouse when data is valid", %{conn: conn, warhouse: %Warhouse{id: id} = warhouse} do
+    test "renders warhouse when data is valid", %{
+      conn: conn,
+      warhouse: %Warhouse{id: id} = warhouse
+    } do
       conn = put(conn, Routes.warhouse_path(conn, :update, warhouse), warhouse: @update_attrs)
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 

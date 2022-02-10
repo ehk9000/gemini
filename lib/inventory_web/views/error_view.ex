@@ -10,7 +10,14 @@ defmodule InventoryWeb.ErrorView do
   # By default, Phoenix returns the status message from
   # the template name. For example, "404.json" becomes
   # "Not Found".
-  def template_not_found(template, _assigns) do
-    %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
+  def render("missing_tenant_id.json", _) do
+    %{
+      errors: [
+        %{
+          title: "Tenant ID Not Set",
+          message: "The tenant-id header must be sent with the request"
+        }
+      ]
+    }
   end
 end
